@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.jpeg" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+          Happy Heart Cakes
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="cart.html" class="btn btn-primary btn-sm">Cart</a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container" style="max-width: 800px;">
+      <h1 class="section-title">Checkout</h1>
+      <p class="section-subtitle">Confirm your delivery details and choose how you want to pay</p>
+
+      <!-- Delivery Address -->
+      <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem;">
+        <h3 style="margin-bottom: 1.25rem;">Delivery Address</h3>
+
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="delivery-name" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="delivery-phone" class="form-control" required placeholder="07XX XXX XXX">
+        </div>
+        <div class="form-group">
+          <label>Delivery Place / Landmark *</label>
+          <input type="text" id="delivery-place" class="form-control" required placeholder="e.g. Near Siaya County Hospital, Township">
+        </div>
+        <div class="form-group">
+          <label>Additional Notes (optional)</label>
+          <textarea id="delivery-notes" class="form-control" rows="2" placeholder="Gate code, preferred time, etc."></textarea>
+        </div>
+
+        <hr style="margin: 1.75rem 0; border: none; border-top: 1px solid var(--gray-200);">
+
+        <h4 style="margin-bottom: 1rem; color: var(--orange);">Cake Customization (Optional)</h4>
+
+        <div class="form-group">
+          <label>Message / Writing on the Cake</label>
+          <input type="text" id="cake-message" class="form-control" placeholder="e.g. Happy Birthday Akinyi">
+        </div>
+        <div class="form-group">
+          <label>Theme of the Cake</label>
+          <input type="text" id="cake-theme" class="form-control" placeholder="e.g. Unicorn, Football, Floral">
+        </div>
+        <div class="form-group">
+          <label>Preferred Colours</label>
+          <input type="text" id="cake-colours" class="form-control" placeholder="e.g. Pink & white, Blue and gold">
+        </div>
+
+        <hr style="margin: 1.75rem 0; border: none; border-top: 1px solid var(--gray-200);">
+
+        <h4 style="margin-bottom: 1rem; color: var(--orange);">Expected Delivery Date & Time</h4>
+        <p style="font-size: 0.9rem; color: var(--gray-600); margin-bottom: 1rem;">
+          Standard delivery is after <strong>24 hours</strong>. You can request earlier delivery (minimum 6 hours) at a fee of <strong>KSh 50 per hour</strong> earlier than 24 hours.
+        </p>
+
+        <div class="form-group">
+          <label>Delivery Date *</label>
+          <input type="date" id="delivery-date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Delivery Time *</label>
+          <input type="time" id="delivery-time" class="form-control" required>
+        </div>
+
+        <div id="rush-fee-box" style="display: none; background: #fff8f0; border-left: 4px solid var(--orange); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+          <strong>Rush Fee:</strong> <span id="rush-fee-text">KSh 0</span><br>
+          <small id="rush-explanation"></small>
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem;">
+        <h3 style="margin-bottom: 1.25rem;">Payment Method</h3>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+          <label style="flex: 1; min-width: 180px; border: 2px solid var(--orange); border-radius: 10px; padding: 1rem; cursor: pointer;" id="label-paynow">
+            <input type="radio" name="payment" value="paynow" checked style="margin-right: 8px;">
+            <strong>Pay Now</strong>
+            <div style="font-size: 0.9rem; color: var(--gray-600); margin-top: 4px;">Pay immediately</div>
+          </label>
+          <label style="flex: 1; min-width: 180px; border: 2px solid var(--gray-200); border-radius: 10px; padding: 1rem; cursor: pointer;" id="label-pod">
+            <input type="radio" name="payment" value="pod" style="margin-right: 8px;">
+            <strong>Pay on Delivery</strong>
+            <div style="font-size: 0.9rem; color: var(--gray-600); margin-top: 4px;">Pay when you receive</div>
+          </label>
+        </div>
+
+        <div id="paynow-section">
+          <p style="margin-bottom: 1rem; font-weight: 600;">Choose how to pay:</p>
+          
+          <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <label style="flex: 1; min-width: 140px; border: 2px solid var(--orange); border-radius: 8px; padding: 0.9rem; cursor: pointer;" id="label-mpesa">
+              <input type="radio" name="paymethod" value="mpesa" checked style="margin-right: 6px;">
+              <strong>M-Pesa</strong>
+            </label>
+            <label style="flex: 1; min-width: 140px; border: 2px solid var(--gray-200); border-radius: 8px; padding: 0.9rem; cursor: pointer;" id="label-card">
+              <input type="radio" name="paymethod" value="card" style="margin-right: 6px;">
+              <strong>Card (Visa / Mastercard)</strong>
+            </label>
+          </div>
+
+          <div id="mpesa-form">
+            <div class="form-group">
+              <label>M-Pesa Phone Number</label>
+              <input type="tel" id="mpesa-phone" class="form-control" placeholder="07XX XXX XXX">
+            </div>
+            <p style="font-size: 0.9rem; color: var(--gray-600);">You will receive an STK push on your phone to enter your M-Pesa PIN.</p>
+          </div>
+
+          <div id="card-form" style="display: none;">
+            <div class="form-group">
+              <label>Cardholder Name</label>
+              <input type="text" id="card-name" class="form-control" placeholder="Name on card">
+            </div>
+            <div class="form-group">
+              <label>Card Number</label>
+              <input type="text" id="card-number" class="form-control" placeholder="ACCT-000035" maxlength="19">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label>Expiry Date</label>
+                <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label>CVV</label>
+                <input type="text" id="card-cvv" class="form-control" placeholder="123" maxlength="4">
+              </div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--gray-600);">(Card payments will be connected later. For now this is simulated.)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem;">
+        <h3 style="margin-bottom: 1rem;">Order Summary</h3>
+        <div id="checkout-summary"></div>
+        <div id="rush-fee-summary" style="display: none; margin-top: 0.75rem; color: var(--orange); font-weight: 600;"></div>
+        <div id="grand-total" style="margin-top: 1rem; font-size: 1.25rem; font-weight: 700; color: var(--orange);"></div>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="confirmOrderBtn" style="padding: 1rem; font-size: 1.1rem;">
+        Confirm & Place Order
+      </button>
+    </div>
+  </section>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('hhc_user') || 'null');
+    const cart = JSON.parse(localStorage.getItem('hhc_cart') || '[]');
+
+    if (!currentUser || !currentUser.token) {
+      alert('Please login first to checkout.');
+      window.location.href = 'login.html';
+    } else if (currentUser.role === 'admin') {
+      alert('Admin cannot place orders.');
+      window.location.href = 'admin-dashboard.html';
+    } else if (cart.length === 0) {
+      alert('Your cart is empty.');
+      window.location.href = 'products.html';
+    }
+
+    // Prefill
+    if (currentUser) {
+      document.getElementById('delivery-name').value = currentUser.name || '';
+      document.getElementById('delivery-phone').value = currentUser.phone || '';
+      document.getElementById('mpesa-phone').value = currentUser.phone || '';
+    }
+    const savedAddress = JSON.parse(localStorage.getItem('hhc_delivery_address') || 'null');
+    if (savedAddress) {
+      document.getElementById('delivery-name').value = savedAddress.name || document.getElementById('delivery-name').value;
+      document.getElementById('delivery-phone').value = savedAddress.phone || document.getElementById('delivery-phone').value;
+      document.getElementById('delivery-place').value = savedAddress.place || '';
+      document.getElementById('delivery-notes').value = savedAddress.notes || '';
+    }
+
+    // Date/time defaults (24h standard, 6h minimum)
+    const now = new Date();
+    const minDate = new Date(now.getTime() + 6 * 60 * 60 * 1000);
+    document.getElementById('delivery-date').min = minDate.toISOString().split('T')[0];
+
+    const defaultDate = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+    document.getElementById('delivery-date').value = defaultDate.toISOString().split('T')[0];
+    document.getElementById('delivery-time').value = defaultDate.toTimeString().slice(0, 5);
+
+    let cartTotal = 0;
+    let rushFee = 0;
+    window.rushFee = 0;
+    window._useMpesa = false;
+    window._mpesaPhone = '';
+
+    // Cart summary
+    let summaryHTML = '';
+    cart.forEach(item => {
+      const priceNum = parseInt(String(item.price).replace(/[^\d]/g, ''), 10) || 0;
+      cartTotal += priceNum;
+      summaryHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+        <span>${item.name}</span>
+        <span>${item.price}</span>
+      </div>`;
+    });
+    document.getElementById('checkout-summary').innerHTML = summaryHTML;
+
+    function updateGrandTotal() {
+      const grand = cartTotal + rushFee;
+      document.getElementById('grand-total').textContent = 'Grand Total: KSh ' + grand.toLocaleString();
+    }
+
+    function updateRushFee() {
+      const dateVal = document.getElementById('delivery-date').value;
+      const timeVal = document.getElementById('delivery-time').value;
+
+      if (!dateVal || !timeVal) {
+        rushFee = 0;
+        window.rushFee = 0;
+        document.getElementById('rush-fee-box').style.display = 'none';
+        document.getElementById('rush-fee-summary').style.display = 'none';
+        updateGrandTotal();
+        return;
+      }
+
+      const selected = new Date(dateVal + 'T' + timeVal);
+      const hoursFromNow = (selected - now) / (1000 * 60 * 60);
+
+      if (hoursFromNow < 6) {
+        alert('Delivery cannot be earlier than 6 hours from now.');
+        document.getElementById('delivery-date').value = defaultDate.toISOString().split('T')[0];
+        document.getElementById('delivery-time').value = defaultDate.toTimeString().slice(0, 5);
+        rushFee = 0;
+        window.rushFee = 0;
+        document.getElementById('rush-fee-box').style.display = 'none';
+        document.getElementById('rush-fee-summary').style.display = 'none';
+        updateGrandTotal();
+        return;
+      }
+
+      if (hoursFromNow < 24) {
+        const hoursEarlier = Math.ceil(24 - hoursFromNow);
+        rushFee = hoursEarlier * 50;
+        window.rushFee = rushFee;
+
+        document.getElementById('rush-fee-box').style.display = 'block';
+        document.getElementById('rush-fee-text').textContent = 'KSh ' + rushFee.toLocaleString();
+        document.getElementById('rush-explanation').textContent =
+          `You requested delivery ${hoursEarlier} hour(s) earlier than the standard 24 hours. Fee = ${hoursEarlier} × KSh 50.`;
+
+        document.getElementById('rush-fee-summary').style.display = 'block';
+        document.getElementById('rush-fee-summary').textContent = 'Rush Fee: KSh ' + rushFee.toLocaleString();
+      } else {
+        rushFee = 0;
+        window.rushFee = 0;
+        document.getElementById('rush-fee-box').style.display = 'none';
+        document.getElementById('rush-fee-summary').style.display = 'none';
+      }
+
+      updateGrandTotal();
+    }
+
+    document.getElementById('delivery-date').addEventListener('change', updateRushFee);
+    document.getElementById('delivery-time').addEventListener('change', updateRushFee);
+    updateRushFee();
+
+    // Payment toggles
+    document.querySelectorAll('input[name="payment"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const isPayNow = this.value === 'paynow';
+        document.getElementById('paynow-section').style.display = isPayNow ? 'block' : 'none';
+        document.getElementById('label-paynow').style.borderColor = isPayNow ? 'var(--orange)' : 'var(--gray-200)';
+        document.getElementById('label-pod').style.borderColor = isPayNow ? 'var(--gray-200)' : 'var(--orange)';
+      });
+    });
+
+    document.querySelectorAll('input[name="paymethod"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        const isMpesa = this.value === 'mpesa';
+        document.getElementById('mpesa-form').style.display = isMpesa ? 'block' : 'none';
+        document.getElementById('card-form').style.display = isMpesa ? 'none' : 'block';
+        document.getElementById('label-mpesa').style.borderColor = isMpesa ? 'var(--orange)' : 'var(--gray-200)';
+        document.getElementById('label-card').style.borderColor = isMpesa ? 'var(--gray-200)' : 'var(--orange)';
+      });
+    });
+
+    // Place order
+    document.getElementById('confirmOrderBtn').addEventListener('click', async function() {
+      const name = document.getElementById('delivery-name').value.trim();
+      const phone = document.getElementById('delivery-phone').value.trim();
+      const place = document.getElementById('delivery-place').value.trim();
+      const notes = document.getElementById('delivery-notes').value.trim();
+      const cakeMessage = document.getElementById('cake-message').value.trim();
+      const cakeTheme = document.getElementById('cake-theme').value.trim();
+      const cakeColours = document.getElementById('cake-colours').value.trim();
+      const deliveryDate = document.getElementById('delivery-date').value;
+      const deliveryTime = document.getElementById('delivery-time').value;
+      const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+      if (!name || !phone || !place || !deliveryDate || !deliveryTime) {
+        alert('Please fill in all required fields including delivery date and time.');
+        return;
+      }
+
+      const btn = this;
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      localStorage.setItem('hhc_delivery_address', JSON.stringify({ name, phone, place, notes }));
+
+      let paymentStatus = 'Pay on Delivery';
+      window._useMpesa = false;
+      window._mpesaPhone = '';
+
+      if (paymentMethod === 'paynow') {
+        const paymethod = document.querySelector('input[name="paymethod"]:checked')?.value || 'mpesa';
+
+        if (paymethod === 'mpesa') {
+          const mpesaPhone = document.getElementById('mpesa-phone').value.trim() || phone;
+          if (!mpesaPhone) {
+            alert('Please enter your M-Pesa phone number.');
+            btn.classList.remove('loading');
+            btn.disabled = false;
+            return;
+          }
+          paymentStatus = 'Pending (M-Pesa)';
+          window._useMpesa = true;
+          window._mpesaPhone = mpesaPhone;
+        } else {
+          const cardNumber = document.getElementById('card-number').value.trim();
+          const cardExpiry = document.getElementById('card-expiry').value.trim();
+          const cardCvv = document.getElementById('card-cvv').value.trim();
+          if (!cardNumber || !cardExpiry || !cardCvv) {
+            alert('Please fill in all card details.');
+            btn.classList.remove('loading');
+            btn.disabled = false;
+            return;
+          }
+          paymentStatus = 'Paid (Card)';
+        }
+      }
+
+      const itemsList = cart.map(item => item.name).join(', ');
+      const currentRushFee = window.rushFee || 0;
+      const grandTotal = cartTotal + currentRushFee;
+
+      const orderData = {
+        customer: name,
+        phone: phone,
+        place: place,
+        notes: notes,
+        cakeMessage: cakeMessage,
+        cakeTheme: cakeTheme,
+        cakeColours: cakeColours,
+        deliveryDate: deliveryDate,
+        deliveryTime: deliveryTime,
+        rushFee: currentRushFee,
+        items: itemsList,
+        amount: 'KSh ' + grandTotal.toLocaleString(),
+        payment: paymentStatus
+      };
+
+      try {
+        const savedOrder = await apiCreateOrder(orderData);
+
+        // Real M-Pesa STK Push
+        if (window._useMpesa) {
+          try {
+            const amountNumber = grandTotal || 1;
+            const stk = await apiMpesaStkPush({
+              phone: window._mpesaPhone,
+              amount: amountNumber,
+              orderId: savedOrder._id,
+              accountReference: savedOrder.ref || 'HHC',
+              description: 'Happy Heart Cakes order'
+            });
+            alert(stk.message || 'STK push sent. Enter your M-Pesa PIN on your phone.');
+          } catch (stkErr) {
+            alert(
+              'Order was saved, but M-Pesa push failed: ' +
+              (stkErr.message || 'You can pay on delivery or contact us.')
+            );
+          }
+        }
+
+        localStorage.setItem('hhc_last_order', JSON.stringify(savedOrder));
+        localStorage.removeItem('hhc_cart');
+        window.location.href = 'order-confirmation.html';
+      } catch (err) {
+        alert(err.message || 'Failed to place order. Please try again.');
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

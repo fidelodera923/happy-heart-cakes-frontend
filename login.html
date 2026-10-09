@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Register | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="images/logo.jpeg" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+       <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="text-center mb-2">
+        <div class="logo" style="justify-content: center; margin-bottom: 0.5rem;">
+          <div class="logo-icon"><img src="images/logo.jpeg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          Happy Heart Cakes
+        </div>
+        <p style="color: var(--gray-600);">Customer Account or Admin Login</p>
+      </div>
+
+      <!-- Main Tabs -->
+      <div class="auth-tabs">
+        <div class="auth-tab active" data-tab="login-form">Login</div>
+        <div class="auth-tab" data-tab="register-form">Register</div>
+        <div class="auth-tab" data-tab="admin-form">Admin</div>
+      </div>
+
+     <!-- ========== CUSTOMER LOGIN ========== -->
+<form id="login-form" class="auth-form active" data-type="login">
+  <div class="form-group">
+    <label for="login-email">Email Address</label>
+    <input type="email" id="login-email" class="form-control" required placeholder="you@example.com">
+  </div>
+  <div class="form-group">
+    <label for="login-password">Password</label>
+    <input type="password" id="login-password" class="form-control" required placeholder="Your password">
+  </div>
+  <div style="text-align: right; margin-bottom: 1rem;">
+    <a href="#" id="forgot-password-link" style="font-size: 0.9rem; color: var(--orange);">Forgot Password?</a>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block">Login</button>
+ <div class="auth-footer">
+  <p>Don't have an account? <a href="#" onclick="document.querySelector('.auth-tab[data-tab=\'register-form\']').click(); return false;" style="color: var(--orange); font-weight: 600;">Register here</a></p>
+</div>
+</form>
+
+      <!-- ========== CUSTOMER REGISTER ========== -->
+      <form id="register-form" class="auth-form" data-type="register">
+        <div class="form-group">
+          <label for="reg-name">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" required placeholder="Jane Doe">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email Address *</label>
+          <input type="email" id="reg-email" class="form-control" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="reg-phone">Phone Number *</label>
+          <input type="tel" id="reg-phone" class="form-control" required placeholder="07XX XXX XXX">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password *</label>
+          <input type="password" id="reg-password" class="form-control" required placeholder="Create a password" minlength="6">
+        </div>
+        <div class="form-group">
+          <label for="reg-confirm">Confirm Password *</label>
+          <input type="password" id="reg-confirm" class="form-control" required placeholder="Repeat password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+       <div class="auth-footer">
+  <p>Already have an account? <a href="#" onclick="document.querySelector('.auth-tab[data-tab=\'login-form\']').click(); return false;" style="color: var(--orange); font-weight: 600;">Login here</a></p>
+</div>
+      </form>
+
+      <!-- ========== ADMIN LOGIN ========== -->
+      <form id="admin-form" class="auth-form" data-type="admin">
+        <div class="form-group">
+          <label for="admin-email">Admin Email</label>
+          <input type="email" id="admin-email" class="form-control" required placeholder="admin@happyheartcakes.com">
+        </div>
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" class="form-control" required placeholder="Admin password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login as Admin</button>
+        <div class="auth-footer">
+          <p style="font-size: 0.85rem; color: var(--gray-600);">
+            Only authorized personnel can access the admin panel.
+          </p>
+        </div>
+      </form>
+      <!-- ========== FORGOT PASSWORD ========== -->
+<form id="forgot-form" class="auth-form" style="display: none;">
+  <h3 style="margin-bottom: 1rem; text-align: center;">Reset Password</h3>
+  <p style="font-size: 0.95rem; color: var(--gray-600); margin-bottom: 1.25rem; text-align: center;">
+    Enter the email you registered with to reset your password.
+  </p>
+
+  <div class="form-group">
+    <label for="forgot-email">Email Address</label>
+    <input type="email" id="forgot-email" class="form-control" required placeholder="you@example.com">
+  </div>
+
+  <div id="reset-password-fields" style="display: none;">
+    <div class="form-group">
+      <label for="new-password">New Password</label>
+      <input type="password" id="new-password" class="form-control" placeholder="Enter new password" minlength="6">
+    </div>
+    <div class="form-group">
+      <label for="confirm-new-password">Confirm New Password</label>
+      <input type="password" id="confirm-new-password" class="form-control" placeholder="Repeat new password">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block" id="forgot-submit-btn">Verify Email</button>
+  
+  <div class="auth-footer">
+    <p><a href="#" id="back-to-login" style="color: var(--orange);">← Back to Login</a></p>
+  </div>
+</form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <p>&copy; 2026 Happy Heart Cakes. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/api.js"></script>
+<script src="js/main.js"></script>
+
+  <script src="js/main.js"></script>
+  <script>
+  // Show Forgot Password form
+  document.getElementById('forgot-password-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('admin-form').style.display = 'none';
+    document.getElementById('forgot-form').style.display = 'block';
+
+    // Hide tabs when in forgot password mode
+    document.querySelector('.auth-tabs').style.display = 'none';
+  });
+
+  // Back to Login
+  document.getElementById('back-to-login').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('forgot-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+    document.querySelector('.auth-tabs').style.display = 'flex';
+    
+    // Reset forgot form
+    document.getElementById('forgot-form').reset();
+    document.getElementById('reset-password-fields').style.display = 'none';
+    document.getElementById('forgot-submit-btn').textContent = 'Verify Email';
+  });
+
+  // Forgot Password Logic
+  let verifiedEmail = null;
+
+  document.getElementById('forgot-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('forgot-email').value.trim().toLowerCase();
+    const users = JSON.parse(localStorage.getItem('hhc_users') || '[]');
+    const foundUser = users.find(u => u.email === email);
+
+    // Step 1: Verify Email
+    if (document.getElementById('reset-password-fields').style.display === 'none') {
+      if (!foundUser) {
+        alert('No account found with that email address.');
+        return;
+      }
+
+      // Email found → show password fields
+      verifiedEmail = email;
+      document.getElementById('reset-password-fields').style.display = 'block';
+      document.getElementById('forgot-submit-btn').textContent = 'Reset Password';
+      document.getElementById('forgot-email').readOnly = true;
+      return;
+    }
+
+    // Step 2: Reset Password
+    const newPassword = document.getElementById('new-password').value;
+    const confirmPassword = document.getElementById('confirm-new-password').value;
+
+    if (newPassword.length < 6) {
+      alert('Password must be at least 6 characters.');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    // Update password
+    const userIndex = users.findIndex(u => u.email === verifiedEmail);
+    if (userIndex !== -1) {
+      users[userIndex].password = newPassword;
+      localStorage.setItem('hhc_users', JSON.stringify(users));
+      
+      alert('Password reset successfully! You can now login with your new password.');
+      
+      // Go back to login
+      document.getElementById('forgot-form').style.display = 'none';
+      document.getElementById('login-form').style.display = 'block';
+      document.querySelector('.auth-tabs').style.display = 'flex';
+      document.getElementById('login-email').value = verifiedEmail;
+      
+      // Reset form
+      document.getElementById('forgot-form').reset();
+      document.getElementById('reset-password-fields').style.display = 'none';
+      document.getElementById('forgot-submit-btn').textContent = 'Verify Email';
+      document.getElementById('forgot-email').readOnly = false;
+      verifiedEmail = null;
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="images/logo.jpeg" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container" style="max-width: 700px; text-align: center;">
+      <div style="font-size: 5rem; margin-bottom: 1rem;">✅</div>
+      <h1 class="section-title" style="margin-bottom: 0.5rem;">Order Received!</h1>
+      <p class="section-subtitle" style="margin-bottom: 2rem;">
+        Thank you for ordering from Happy Heart Cakes. We have received your order and will contact you shortly.
+      </p>
+
+      <div id="order-details" style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); text-align: left; margin-bottom: 2rem;">
+      </div>
+
+     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+  <a href="user-dashboard.html" class="btn btn-primary">View My Orders</a>
+  <a href="products.html" class="btn btn-outline">Order Again</a>
+  <button onclick="window.print()" class="btn btn-outline">🖨️ Print Order</button>
+  <a href="https://wa.me/254713773913" target="_blank" class="btn btn-secondary">Chat on WhatsApp</a>
+</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <p>&copy; 2026 Happy Heart Cakes. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const lastOrder = JSON.parse(localStorage.getItem('hhc_last_order') || 'null');
+    const container = document.getElementById('order-details');
+
+    if (lastOrder) {
+      container.innerHTML = `
+        <h3 style="margin-bottom: 1.25rem; color: var(--orange);">Order Summary</h3>
+        
+        <p><strong>Order Reference:</strong> ${lastOrder.ref || '-'}</p>
+        <p><strong>Date Ordered:</strong> ${lastOrder.date || '-'}</p>
+        
+        <hr style="margin: 1.25rem 0; border: none; border-top: 1px solid var(--gray-200);">
+        
+        <p><strong>Customer:</strong> ${lastOrder.customer || '-'}</p>
+        <p><strong>Phone:</strong> ${lastOrder.phone || '-'}</p>
+        <p><strong>Delivery Place:</strong> ${lastOrder.place || '-'}</p>
+        ${lastOrder.notes ? `<p><strong>Notes:</strong> ${lastOrder.notes}</p>` : ''}
+        
+        <hr style="margin: 1.25rem 0; border: none; border-top: 1px solid var(--gray-200);">
+        
+        <p><strong>Items:</strong><br>${lastOrder.items || '-'}</p>
+        
+        ${lastOrder.cakeMessage || lastOrder.cakeTheme || lastOrder.cakeColours ? `
+          <hr style="margin: 1.25rem 0; border: none; border-top: 1px solid var(--gray-200);">
+          <p style="font-weight: 600; color: var(--orange); margin-bottom: 0.5rem;">Cake Customization</p>
+          ${lastOrder.cakeMessage ? `<p><strong>Message on Cake:</strong> ${lastOrder.cakeMessage}</p>` : ''}
+          ${lastOrder.cakeTheme ? `<p><strong>Theme:</strong> ${lastOrder.cakeTheme}</p>` : ''}
+          ${lastOrder.cakeColours ? `<p><strong>Colours:</strong> ${lastOrder.cakeColours}</p>` : ''}
+        ` : ''}
+        
+        <hr style="margin: 1.25rem 0; border: none; border-top: 1px solid var(--gray-200);">
+        
+        <p><strong>Expected Delivery:</strong> ${lastOrder.deliveryDate || '-'} at ${lastOrder.deliveryTime || ''}</p>
+        ${lastOrder.rushFee && lastOrder.rushFee > 0 ? `<p><strong>Rush Fee:</strong> KSh ${Number(lastOrder.rushFee).toLocaleString()}</p>` : ''}
+        
+        <p style="margin-top: 1rem;">
+          <strong>Payment Status:</strong> 
+          <span class="badge ${lastOrder.payment && lastOrder.payment.includes('Paid') ? 'badge-blue' : 'badge-orange'}">
+            ${lastOrder.payment || 'Pay on Delivery'}
+          </span>
+        </p>
+        
+        <p style="font-size: 1.3rem; font-weight: 700; color: var(--orange); margin-top: 1.25rem;">
+          Total: ${lastOrder.amount || '-'}
+        </p>
+        
+        <p style="margin-top: 1.25rem; font-size: 0.95rem; color: var(--gray-600);">
+          We will contact you on WhatsApp or phone to confirm delivery details.
+        </p>
+      `;
+    } else {
+      container.innerHTML = `
+        <p style="text-align: center; color: var(--gray-600);">
+          No recent order found.<br>
+          <a href="products.html">Browse our products</a>
+        </p>
+      `;
+    }
+  </script>
+</body>
+</html>

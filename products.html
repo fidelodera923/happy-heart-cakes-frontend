@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products & Menu | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="images/logo.jpeg" type="image/png">
+  <style>
+    .tier-selects {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .tier-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .tier-row label {
+      font-size: 0.85rem;
+      min-width: 70px;
+      margin: 0;
+    }
+    .tier-row select {
+      flex: 1;
+      padding: 0.4rem;
+      font-size: 0.9rem;
+    }
+    .option-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .search-box {
+      max-width: 420px;
+      margin: 0 auto 1.75rem;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.7rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 50px;
+      font-size: 1rem;
+    }
+    .search-box::before {
+      content: "🔍";
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .qty-selector input {
+      width: 60px;
+      text-align: center;
+      padding: 0.4rem;
+    }
+    .notes-box {
+      background: #fff8f0;
+      border-left: 4px solid var(--orange);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+       <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html" class="active">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="cart.html" class="btn btn-primary btn-sm">
+            Cart 
+            <span class="cart-count" style="display:none; background:#fff; color:var(--orange); border-radius:50%; width:20px; height:20px; font-size:0.75rem; align-items:center; justify-content:center; margin-left:4px;"></span>
+          </a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Our Products & Menu</h1>
+      <p class="section-subtitle">
+        Celebration & Wedding cakes are priced per kg. Orders of 3kg and above get KSh 100 discount per kg.<br>
+        Fondant cakes attract an extra KSh 500 per kg.
+      </p>
+
+      <!-- Delivery & Payment Notes -->
+      <div class="notes-box">
+        <strong>Important Notes:</strong><br>
+        • Delivery within Siaya Town: <strong>KSh 200</strong><br>
+        • Custom cakes require <strong>50% deposit</strong><br>
+        • Please place cake orders at least <strong>2–3 days</strong> in advance<br>
+        • We accept M-Pesa and Cash on delivery
+      </div>
+
+      <!-- Search Box -->
+      <div class="search-box">
+        <input type="text" id="product-search" placeholder="Search cakes, buns, cookies...">
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="cakes">Celebration Cakes</button>
+        <button class="filter-btn" data-filter="wedding">Wedding Cakes</button>
+        <button class="filter-btn" data-filter="shop">Shop Items</button>
+      </div>
+
+      <div class="product-grid" id="product-grid">
+
+        <!-- ===================== CELEBRATION CAKE ===================== -->
+        <div class="product-card" data-category="cakes" data-type="single" data-name="celebration cake">
+          <div class="product-img"><img src="images/minnie.jpeg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>Celebration Cake</h3>
+            <p>Birthday, anniversary, graduation, nyombo, all other celebrations and custom designed cakes for all ages..</p>
+
+            <div class="form-group" style="margin-bottom: 0.6rem;">
+              <label style="font-size: 0.9rem;">Flavour</label>
+              <select class="form-control flavour-select" style="padding: 0.45rem;">
+                <option value="1700">Vanilla – KSh 1,700</option>
+                <option value="1700">Strawberry – KSh 1,700</option>
+                <option value="1700">Pineapple – KSh 1,700</option>
+                <option value="1700">Lemon – KSh 1,700</option>
+                <option value="1700">Orange – KSh 1,700</option>
+                <option value="1700">Passion – KSh 1,700</option>
+                <option value="2000">Coconut – KSh 2,000</option>
+                <option value="2000">Mint – KSh 2,000</option>
+                <option value="2000">Pina Colada – KSh 2,000</option>
+                <option value="2000">Blueberry – KSh 2,000</option>
+                <option value="2000">Carrot – KSh 2,000</option>
+                <option value="2000">Banana – KSh 2,000</option>
+                <option value="2300">Peanut – KSh 2,300</option>
+                <option value="2300">Orange Cinnamon – KSh 2,300</option>
+                <option value="2500">Chocolate – KSh 2,500</option>
+                <option value="2500">Red Velvet – KSh 2,500</option>
+                <option value="2500">Black Forest – KSh 2,500</option>
+                <option value="2500">White Forest – KSh 2,500</option>
+                <option value="2500">Caramel – KSh 2,500</option>
+                <option value="2800">Fruit Cake – KSh 2,800</option>
+                <option value="3000">Diabetics – KSh 3,000</option>
+                <option value="3500">Gluten Free – KSh 3,500</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.6rem;">
+              <label style="font-size: 0.9rem;">How many kg?</label>
+              <input type="number" class="form-control kg-input" min="1" max="30" value="2" step="0.5" style="padding: 0.45rem;">
+            </div>
+
+            <div class="option-row">
+              <input type="checkbox" class="fondant-check" id="fondant1">
+              <label for="fondant1">Fondant Cake (+KSh 500/kg)</label>
+            </div>
+
+            <div style="margin-bottom: 0.9rem; font-weight: 600; color: var(--orange);">
+              Estimated Total: <span class="live-total">KSh 3,400</span>
+            </div>
+
+            <button class="btn btn-primary btn-sm add-cake-btn" style="width:100%;">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- ===================== 2-TIER WEDDING CAKE ===================== -->
+        <div class="product-card" data-category="wedding" data-type="two-tier" data-name="2-tier wedding cake">
+          <div class="product-img"><img src="images/wood.jpeg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>2-Tier Cake</h3>
+            <p>Elegant 2-tier cake. Choose different flavours for each tier.Perfect for weddings, birthdays, graduation, nyombo and other celebrations.</p>
+
+            <div class="tier-selects">
+              <div class="tier-row">
+                <label>Bottom Tier</label>
+                <select class="form-control flavour-1">
+                  <option value="1700">Vanilla – 1,700</option>
+                  <option value="1700">Strawberry – 1,700</option>
+                  <option value="1700">Pineapple – 1,700</option>
+                  <option value="1700">Lemon – 1,700</option>
+                  <option value="1700">Orange – 1,700</option>
+                  <option value="1700">Passion – 1,700</option>
+                  <option value="2000">Coconut – 2,000</option>
+                  <option value="2000">Mint – 2,000</option>
+                  <option value="2000">Pina Colada – 2,000</option>
+                  <option value="2000">Blueberry – 2,000</option>
+                  <option value="2000">Carrot – 2,000</option>
+                  <option value="2000">Banana – 2,000</option>
+                  <option value="2300">Peanut – 2,300</option>
+                  <option value="2300">Orange Cinnamon – 2,300</option>
+                  <option value="2500">Chocolate – 2,500</option>
+                  <option value="2500">Red Velvet – 2,500</option>
+                  <option value="2500">Black Forest – 2,500</option>
+                  <option value="2500">White Forest – 2,500</option>
+                  <option value="2500">Caramel – 2,500</option>
+                  <option value="2800">Fruit Cake – 2,800</option>
+                  <option value="3000">Diabetics – 3,000</option>
+                  <option value="3500">Gluten Free – 3,500</option>
+                </select>
+              </div>
+              <div class="tier-row">
+                <label>Top Tier</label>
+                <select class="form-control flavour-2">
+                  <option value="1700">Vanilla – 1,700</option>
+                  <option value="1700">Strawberry – 1,700</option>
+                  <option value="1700">Pineapple – 1,700</option>
+                  <option value="1700">Lemon – 1,700</option>
+                  <option value="1700">Orange – 1,700</option>
+                  <option value="1700">Passion – 1,700</option>
+                  <option value="2000">Coconut – 2,000</option>
+                  <option value="2000">Mint – 2,000</option>
+                  <option value="2000">Pina Colada – 2,000</option>
+                  <option value="2000">Blueberry – 2,000</option>
+                  <option value="2000">Carrot – 2,000</option>
+                  <option value="2000">Banana – 2,000</option>
+                  <option value="2300">Peanut – 2,300</option>
+                  <option value="2300">Orange Cinnamon – 2,300</option>
+                  <option value="2500">Chocolate – 2,500</option>
+                  <option value="2500">Red Velvet – 2,500</option>
+                  <option value="2500">Black Forest – 2,500</option>
+                  <option value="2500">White Forest – 2,500</option>
+                  <option value="2500">Caramel – 2,500</option>
+                  <option value="2800">Fruit Cake – 2,800</option>
+                  <option value="3000">Diabetics – 3,000</option>
+                  <option value="3500">Gluten Free – 3,500</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.6rem;">
+              <label style="font-size: 0.9rem;">Total Weight (kg)</label>
+              <input type="number" class="form-control kg-input" min="5" max="40" value="8" step="1" style="padding: 0.45rem;">
+            </div>
+
+            <div class="option-row">
+              <input type="checkbox" class="fondant-check" id="fondant2">
+              <label for="fondant2">Fondant Cake (+KSh 500/kg)</label>
+            </div>
+
+            <div style="margin-bottom: 0.9rem; font-weight: 600; color: var(--orange);">
+              Estimated Total: <span class="live-total">KSh 13,600</span>
+            </div>
+
+            <button class="btn btn-primary btn-sm add-cake-btn" style="width:100%;">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- ===================== 3-TIER WEDDING CAKE ===================== -->
+        <div class="product-card" data-category="wedding" data-type="three-tier" data-name="3-tier wedding cake">
+          <div class="product-img"><img src="images/fridge.jpeg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>3-Tier Luxury Cake</h3>
+            <p>Stunning 3-tier cake. Choose different flavours for each tier.Perfect for Wedding, nyombo, graduation and other celebrations.</p>
+
+            <div class="tier-selects">
+              <div class="tier-row">
+                <label>Bottom Tier</label>
+                <select class="form-control flavour-1">
+                  <option value="1700">Vanilla – 1,700</option>
+                  <option value="1700">Strawberry – 1,700</option>
+                  <option value="1700">Pineapple – 1,700</option>
+                  <option value="1700">Lemon – 1,700</option>
+                  <option value="1700">Orange – 1,700</option>
+                  <option value="1700">Passion – 1,700</option>
+                  <option value="2000">Coconut – 2,000</option>
+                  <option value="2000">Mint – 2,000</option>
+                  <option value="2000">Pina Colada – 2,000</option>
+                  <option value="2000">Blueberry – 2,000</option>
+                  <option value="2000">Carrot – 2,000</option>
+                  <option value="2000">Banana – 2,000</option>
+                  <option value="2300">Peanut – 2,300</option>
+                  <option value="2300">Orange Cinnamon – 2,300</option>
+                  <option value="2500">Chocolate – 2,500</option>
+                  <option value="2500">Red Velvet – 2,500</option>
+                  <option value="2500">Black Forest – 2,500</option>
+                  <option value="2500">White Forest – 2,500</option>
+                  <option value="2500">Caramel – 2,500</option>
+                  <option value="2800">Fruit Cake – 2,800</option>
+                  <option value="3000">Diabetics – 3,000</option>
+                  <option value="3500">Gluten Free – 3,500</option>
+                </select>
+              </div>
+              <div class="tier-row">
+                <label>Middle Tier</label>
+                <select class="form-control flavour-2">
+                  <option value="1700">Vanilla – 1,700</option>
+                  <option value="1700">Strawberry – 1,700</option>
+                  <option value="1700">Pineapple – 1,700</option>
+                  <option value="1700">Lemon – 1,700</option>
+                  <option value="1700">Orange – 1,700</option>
+                  <option value="1700">Passion – 1,700</option>
+                  <option value="2000">Coconut – 2,000</option>
+                  <option value="2000">Mint – 2,000</option>
+                  <option value="2000">Pina Colada – 2,000</option>
+                  <option value="2000">Blueberry – 2,000</option>
+                  <option value="2000">Carrot – 2,000</option>
+                  <option value="2000">Banana – 2,000</option>
+                  <option value="2300">Peanut – 2,300</option>
+                  <option value="2300">Orange Cinnamon – 2,300</option>
+                  <option value="2500">Chocolate – 2,500</option>
+                  <option value="2500">Red Velvet – 2,500</option>
+                  <option value="2500">Black Forest – 2,500</option>
+                  <option value="2500">White Forest – 2,500</option>
+                  <option value="2500">Caramel – 2,500</option>
+                  <option value="2800">Fruit Cake – 2,800</option>
+                  <option value="3000">Diabetics – 3,000</option>
+                  <option value="3500">Gluten Free – 3,500</option>
+                </select>
+              </div>
+              <div class="tier-row">
+                <label>Top Tier</label>
+                <select class="form-control flavour-3">
+                  <option value="1700">Vanilla – 1,700</option>
+                  <option value="1700">Strawberry – 1,700</option>
+                  <option value="1700">Pineapple – 1,700</option>
+                  <option value="1700">Lemon – 1,700</option>
+                  <option value="1700">Orange – 1,700</option>
+                  <option value="1700">Passion – 1,700</option>
+                  <option value="2000">Coconut – 2,000</option>
+                  <option value="2000">Mint – 2,000</option>
+                  <option value="2000">Pina Colada – 2,000</option>
+                  <option value="2000">Blueberry – 2,000</option>
+                  <option value="2000">Carrot – 2,000</option>
+                  <option value="2000">Banana – 2,000</option>
+                  <option value="2300">Peanut – 2,300</option>
+                  <option value="2300">Orange Cinnamon – 2,300</option>
+                  <option value="2500">Chocolate – 2,500</option>
+                  <option value="2500">Red Velvet – 2,500</option>
+                  <option value="2500">Black Forest – 2,500</option>
+                  <option value="2500">White Forest – 2,500</option>
+                  <option value="2500">Caramel – 2,500</option>
+                  <option value="2800">Fruit Cake – 2,800</option>
+                  <option value="3000">Diabetics – 3,000</option>
+                  <option value="3500">Gluten Free – 3,500</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0.6rem;">
+              <label style="font-size: 0.9rem;">Total Weight (kg)</label>
+              <input type="number" class="form-control kg-input" min="10" max="60" value="12" step="1" style="padding: 0.45rem;">
+            </div>
+
+            <div class="option-row">
+              <input type="checkbox" class="fondant-check" id="fondant3">
+              <label for="fondant3">Fondant Cake (+KSh 500/kg)</label>
+            </div>
+
+            <div style="margin-bottom: 0.9rem; font-weight: 600; color: var(--orange);">
+              Estimated Total: <span class="live-total">KSh 20,400</span>
+            </div>
+
+            <button class="btn btn-primary btn-sm add-cake-btn" style="width:100%;">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- ===================== SHOP ITEMS ===================== -->
+        <div class="product-card" data-category="shop" data-name="fresh soft buns">
+          <div class="product-img"><img src="images/buns.jpg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>Fresh Soft Buns (pack of 6)</h3>
+            <p>Warm, fluffy buns baked every morning.</p>
+            <div class="qty-selector">
+              <label>Qty:</label>
+              <input type="number" class="qty-input" min="1" value="1">
+            </div>
+            <div class="product-footer">
+              <span class="price">KSh 150</span>
+              <button class="btn btn-primary btn-sm add-normal-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="shop" data-name="assorted cupcakes">
+          <div class="product-img"><img src="images/cupcakes.jpg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>Assorted Cupcakes (pack of 6)</h3>
+            <p>A delightful assortment of soft, freshly baked cupcakes in different flavours and toppings, offering a variety of sweet treats perfect for parties, celebrations or sharing with family and friends.</p>
+            <div class="qty-selector">
+              <label>Qty:</label>
+              <input type="number" class="qty-input" min="1" value="1">
+            </div>
+            <div class="product-footer">
+              <span class="price">KSh 600</span>
+              <button class="btn btn-primary btn-sm add-normal-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="shop" data-name="jam doughnuts">
+          <div class="product-img"><img src="images/doughnuts.jpg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>Doughnuts (pack of 4)</h3>
+            <p>Soft, fully and freshly baked doughnuts with delicious flavours and toppings, perfect for breakfast, parties, snacks or satisfying a sweet craving.</p>
+            <div class="qty-selector">
+              <label>Qty:</label>
+              <input type="number" class="qty-input" min="1" value="1">
+            </div>
+            <div class="product-footer">
+              <span class="price">KSh 200</span>
+              <button class="btn btn-primary btn-sm add-normal-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="shop" data-name="mandazi">
+          <div class="product-img"><img src="images/mandazi.jpg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+          <div class="product-body">
+            <h3>Mandazi (pack of 6)</h3>
+            <p>Soft, golden-brown mandazi with a lightly sweet and fluffy interior,freshly prepared to make the perfect snack for breakfast, tea time or sharing with family and friends.</p>
+            <div class="qty-selector">
+              <label>Qty:</label>
+              <input type="number" class="qty-input" min="1" value="1">
+            </div>
+            <div class="product-footer">
+              <span class="price">KSh 100</span>
+              <button class="btn btn-primary btn-sm add-normal-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== COOKIES ===================== -->
+<div class="product-card" data-category="shop" data-type="cookie" data-name="cookies">
+  <div class="product-img"><img src="images/cookii.jpeg" alt="Chocolate Fudge Cake" style="width:100%; height:100%; object-fit:cover;"></div>
+  <div class="product-body">
+    <h3>Cookies</h3>
+    <p>Freshly baked, crisp and delicious cookies with a sweet, buttery flavour and a satisfying texture. Perfect for tea time, snacking sharing or enjoying as a quick treat. Choose flavour and size.</p>
+
+    <div class="form-group" style="margin-bottom: 0.6rem;">
+      <label style="font-size: 0.9rem;">Flavour</label>
+      <select class="form-control cookie-flavour" style="padding: 0.45rem;">
+        <option value="digestive">Digestive</option>
+        <option value="oatmeal">Oatmeal</option>
+        <option value="ginger">Ginger</option>
+        <option value="lemon">Lemon</option>
+        <option value="orange-cinnamon">Orange Cinnamon</option>
+        <option value="chocolate-chip">Chocolate Chip</option>
+      </select>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 0.6rem;">
+      <label style="font-size: 0.9rem;">Size</label>
+      <select class="form-control cookie-size" style="padding: 0.45rem;">
+        <option value="250">250g</option>
+        <option value="400">400g</option>
+      </select>
+    </div>
+
+    <div class="qty-selector">
+      <label>Qty:</label>
+      <input type="number" class="qty-input" min="1" value="1">
+    </div>
+
+    <div style="margin-bottom: 0.9rem; font-weight: 600; color: var(--orange);">
+      Price: <span class="live-total">KSh 300</span>
+    </div>
+
+    <button class="btn btn-primary btn-sm add-cookie-btn" style="width:100%;">Add to Cart</button>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+          <p>Baking happiness into every cake and treat. Serving Siaya Town with love.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="custom-order.html">Custom Orders</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Info</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>📞 0713 773 913</li>
+            <li>📍 Siaya Town</li>
+            <li>💬 WhatsApp available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Happy Heart Cakes. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ========== HELPER: Button Loading State ==========
+    function setButtonLoading(btn, isLoading) {
+      if (isLoading) {
+        btn.classList.add('loading');
+        btn.disabled = true;
+      } else {
+        btn.classList.remove('loading');
+        btn.textContent = 'Added ✓';
+        setTimeout(() => {
+          btn.textContent = 'Add to Cart';
+          btn.disabled = false;
+        }, 1500);
+      }
+    }
+
+    // ========== SEARCH ==========
+    document.getElementById('product-search').addEventListener('input', function() {
+      const term = this.value.toLowerCase().trim();
+      document.querySelectorAll('.product-card').forEach(card => {
+        const name = (card.dataset.name || card.querySelector('h3').textContent).toLowerCase();
+        card.style.display = name.includes(term) ? 'flex' : 'none';
+      });
+    });
+
+    // ========== CAKE CALCULATION ==========
+    function getFlavourName(select) {
+      return select.options[select.selectedIndex].text.split('–')[0].trim();
+    }
+
+    function calculateCake(card) {
+      const type = card.dataset.type;
+      const kg = parseFloat(card.querySelector('.kg-input').value) || 1;
+      const isFondant = card.querySelector('.fondant-check')?.checked || false;
+      let basePrice = 0;
+      let description = '';
+
+      if (type === 'single') {
+        basePrice = parseInt(card.querySelector('.flavour-select').value);
+        description = getFlavourName(card.querySelector('.flavour-select'));
+      } else if (type === 'two-tier') {
+        const p1 = parseInt(card.querySelector('.flavour-1').value);
+        const p2 = parseInt(card.querySelector('.flavour-2').value);
+        basePrice = (p1 + p2) / 2;
+        description = '2-Tier (' + getFlavourName(card.querySelector('.flavour-1')) + ' + ' + getFlavourName(card.querySelector('.flavour-2')) + ')';
+      } else if (type === 'three-tier') {
+        const p1 = parseInt(card.querySelector('.flavour-1').value);
+        const p2 = parseInt(card.querySelector('.flavour-2').value);
+        const p3 = parseInt(card.querySelector('.flavour-3').value);
+        basePrice = (p1 + p2 + p3) / 3;
+        description = '3-Tier (' + getFlavourName(card.querySelector('.flavour-1')) + ' + ' + getFlavourName(card.querySelector('.flavour-2')) + ' + ' + getFlavourName(card.querySelector('.flavour-3')) + ')';
+      }
+
+      if (isFondant) {
+        basePrice += 500;
+        description += ' (Fondant)';
+      }
+
+      let discount = kg >= 3 ? 100 * kg : 0;
+      let total = Math.round(kg * basePrice - discount);
+      if (total < 0) total = 0;
+
+      card.querySelector('.live-total').textContent = 'KSh ' + total.toLocaleString();
+      return { total, description: description + ' - ' + kg + 'kg' };
+    }
+
+    document.querySelectorAll('.product-card[data-type]').forEach(card => {
+      if (card.dataset.type === 'cookie') return;
+      card.querySelectorAll('select, .kg-input, .fondant-check').forEach(el => {
+        el.addEventListener('input', () => calculateCake(card));
+        el.addEventListener('change', () => calculateCake(card));
+      });
+      calculateCake(card);
+    });
+
+    // ========== ADD CAKE ==========
+document.querySelectorAll('.add-cake-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    if (this.disabled) return;
+
+    const card = this.closest('.product-card');
+    const title = card.querySelector('h3').textContent;
+    const result = calculateCake(card);
+
+    this.disabled = true;
+    this.classList.add('loading');
+
+    setTimeout(() => {
+      let cart = JSON.parse(localStorage.getItem('hhc_cart') || '[]');
+      cart.push({
+        name: title + ' - ' + result.description,
+        price: 'KSh ' + result.total.toLocaleString()
+      });
+      localStorage.setItem('hhc_cart', JSON.stringify(cart));
+
+      const countEl = document.querySelector('.cart-count');
+      if (countEl) {
+        countEl.textContent = cart.length;
+        countEl.style.display = 'inline-flex';
+      }
+
+      this.classList.remove('loading');
+      this.disabled = false;
+      showToast('Added to cart!');
+    }, 500);
+  });
+});
+
+// ========== NORMAL ITEMS ==========
+document.querySelectorAll('.add-normal-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    if (this.disabled) return;
+
+    const card = this.closest('.product-card');
+    const name = card.querySelector('h3').textContent;
+    const priceText = card.querySelector('.price').textContent;
+    const qty = parseInt(card.querySelector('.qty-input')?.value) || 1;
+
+    this.disabled = true;
+    this.classList.add('loading');
+
+    setTimeout(() => {
+      let cart = JSON.parse(localStorage.getItem('hhc_cart') || '[]');
+      for (let i = 0; i < qty; i++) {
+        cart.push({ name, price: priceText });
+      }
+      localStorage.setItem('hhc_cart', JSON.stringify(cart));
+
+      const countEl = document.querySelector('.cart-count');
+      if (countEl) {
+        countEl.textContent = cart.length;
+        countEl.style.display = 'inline-flex';
+      }
+
+      this.classList.remove('loading');
+      this.disabled = false;
+      showToast(qty > 1 ? `${qty} items added to cart!` : 'Added to cart!');
+    }, 500);
+  });
+});
+
+/// ========== COOKIES ==========
+const cookiePrices = {
+  'digestive': { 250: 300, 400: 450 },
+  'oatmeal': { 250: 300, 400: 450 },
+  'ginger': { 250: 250, 400: 400 },
+  'lemon': { 250: 250, 400: 400 },
+  'orange-cinnamon': { 250: 250, 400: 400 },
+  'chocolate-chip': { 250: 250, 400: 400 }
+};
+
+function updateCookiePrice(card) {
+  const flavour = card.querySelector('.cookie-flavour').value;
+  const size = card.querySelector('.cookie-size').value;
+  const price = cookiePrices[flavour][size];
+  card.querySelector('.live-total').textContent = 'KSh ' + price;
+  return price;
+}
+
+// Update price when flavour or size changes
+document.querySelectorAll('.product-card[data-type="cookie"]').forEach(card => {
+  card.querySelectorAll('select').forEach(el => {
+    el.addEventListener('change', () => updateCookiePrice(card));
+  });
+  updateCookiePrice(card); // set initial price
+});
+
+// Add Cookie to Cart
+document.querySelectorAll('.add-cookie-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    if (this.disabled) return;
+
+    const card = this.closest('.product-card');
+    const flavourSelect = card.querySelector('.cookie-flavour');
+    const flavourName = flavourSelect.options[flavourSelect.selectedIndex].text;
+    const size = card.querySelector('.cookie-size').value + 'g';
+    const price = updateCookiePrice(card);
+    const qty = parseInt(card.querySelector('.qty-input')?.value) || 1;
+
+    this.disabled = true;
+    this.classList.add('loading');
+
+    setTimeout(() => {
+      let cart = JSON.parse(localStorage.getItem('hhc_cart') || '[]');
+      
+      for (let i = 0; i < qty; i++) {
+        cart.push({
+          name: flavourName + ' Cookies (' + size + ')',
+          price: 'KSh ' + price
+        });
+      }
+      
+      localStorage.setItem('hhc_cart', JSON.stringify(cart));
+
+      // Update cart count
+      const countEl = document.querySelector('.cart-count');
+      if (countEl) {
+        countEl.textContent = cart.length;
+        countEl.style.display = 'inline-flex';
+      }
+
+      this.classList.remove('loading');
+      this.disabled = false;
+
+      if (typeof showToast === 'function') {
+        showToast(qty > 1 ? qty + ' items added to cart!' : 'Added to cart!');
+      } else {
+        this.textContent = 'Added ✓';
+        setTimeout(() => {
+          this.textContent = 'Add to Cart';
+        }, 1500);
+      }
+    }, 500);
+  });
+});
+  </script>
+</body>
+</html>

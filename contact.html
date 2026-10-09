@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+ <link rel="icon" href="images/logo.jpeg" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="custom-order.html" class="btn btn-primary btn-sm">Order Now</a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Contact Us</h1>
+      <p class="section-subtitle">We’d love to hear from you. Reach out by phone, WhatsApp or the form below.</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 1000px; margin: 0 auto;">
+        <!-- Contact Info -->
+        <div>
+          <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem;">
+            <h3 class="mb-2">Get in Touch</h3>
+            <p style="margin-bottom: 1rem;"><strong>📞 Phone / WhatsApp</strong><br>
+              <a href="tel:0713773913" style="color: var(--orange); font-size: 1.25rem; font-weight: 600;">0713 773 913</a>
+            </p>
+            <p style="margin-bottom: 1rem;"><strong>📍 Location</strong><br>
+              Siaya Town, Kenya
+            </p>
+            <p style="margin-bottom: 1rem;"><strong>🕐 Hours</strong><br>
+              Monday – Saturday: 8:00 am – 6:00 pm<br>
+              Sunday: By appointment / limited hours
+            </p>
+            <a href="tel:0713773913" class="btn btn-primary btn-block">Call Now</a>
+            <a href="https://wa.me/254713773913" target="_blank" class="btn btn-secondary btn-block mt-2">WhatsApp Us</a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div style="background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+          <h3 class="mb-2">Send a Message</h3>
+          <form data-demo data-success="Thank you for your message! We will get back to you as soon as possible.">
+            <div class="form-group">
+              <label for="c-name">Your Name *</label>
+              <input type="text" id="c-name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="c-phone">Phone Number *</label>
+              <input type="tel" id="c-phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email (optional)</label>
+              <input type="email" id="c-email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="c-subject">Subject</label>
+              <select id="c-subject" class="form-control">
+                <option>General Enquiry</option>
+                <option>Custom Cake Order</option>
+                <option>Wedding Cake</option>
+                <option>Delivery Question</option>
+                <option>Feedback</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="c-message">Message *</label>
+              <textarea id="c-message" class="form-control" required placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+          <p>Baking happiness into every cake and treat. Serving Siaya Town with love.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="custom-order.html">Custom Orders</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Info</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>📞 0713 773 913</li>
+            <li>📍 Siaya Town</li>
+            <li>💬 WhatsApp available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Happy Heart Cakes. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      section .container > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</body>
+</html>

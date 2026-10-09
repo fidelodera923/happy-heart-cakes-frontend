@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.jpeg" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+          Happy Heart Cakes
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="reviews.html" class="active">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+          <a href="cart.html" class="btn btn-primary btn-sm">
+            Cart 
+            <span class="cart-count" style="display:none; background:#fff; color:var(--orange); border-radius:50%; width:20px; height:20px; font-size:0.75rem; align-items:center; justify-content:center; margin-left:4px;"></span>
+          </a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Customer Reviews</h1>
+      <p class="section-subtitle">See what our happy customers are saying about Happy Heart Cakes</p>
+
+      <!-- Approved Reviews from Backend -->
+      <div class="reviews-grid" id="public-reviews" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+        <!-- Filled by JavaScript -->
+      </div>
+
+      <!-- Submit Review Form -->
+      <div style="max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow);">
+        <h3 style="margin-bottom: 1.25rem;">Leave a Review</h3>
+        
+        <form id="reviewForm">
+          <div class="form-group">
+            <label for="reviewer-name">Your Name *</label>
+            <input type="text" id="reviewer-name" class="form-control" required placeholder="Your name">
+          </div>
+
+          <div class="form-group">
+            <label>Your Rating *</label>
+            <div class="star-rating" id="rating-stars" style="font-size: 1.8rem; color: var(--orange); cursor: pointer; margin: 0.5rem 0;">
+              <span class="star" data-value="1">☆</span>
+              <span class="star" data-value="2">☆</span>
+              <span class="star" data-value="3">☆</span>
+              <span class="star" data-value="4">☆</span>
+              <span class="star" data-value="5">☆</span>
+            </div>
+            <input type="hidden" id="rating-value" value="0">
+          </div>
+
+          <div class="form-group">
+            <label for="review-text">Your Review *</label>
+            <textarea id="review-text" class="form-control" required rows="4" placeholder="Tell us about your experience..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Photo (optional)</label>
+            <div class="upload-area">
+              <input type="file" accept="image/*" id="review-photo">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
+              <p>Click or drag a photo of your cake</p>
+              <img class="upload-preview" alt="Preview">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+            Happy Heart Cakes
+          </a>
+          <p>Baking happiness into every cake and treat. Serving Siaya Town with love.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="custom-order.html">Custom Orders</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Info</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>📞 0713 773 913</li>
+            <li>📍 Siaya Town</li>
+            <li>💬 WhatsApp available</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Happy Heart Cakes. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // ========== STAR RATING ==========
+    let selectedRating = 0;
+    const stars = document.querySelectorAll('#rating-stars .star');
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', function() {
+        const val = parseInt(this.dataset.value);
+        stars.forEach(s => {
+          s.textContent = parseInt(s.dataset.value) <= val ? '★' : '☆';
+        });
+      });
+
+      star.addEventListener('mouseout', function() {
+        stars.forEach(s => {
+          s.textContent = parseInt(s.dataset.value) <= selectedRating ? '★' : '☆';
+        });
+      });
+
+      star.addEventListener('click', function() {
+        selectedRating = parseInt(this.dataset.value);
+        document.getElementById('rating-value').value = selectedRating;
+        stars.forEach(s => {
+          s.textContent = parseInt(s.dataset.value) <= selectedRating ? '★' : '☆';
+        });
+      });
+    });
+
+    // ========== PREFILL NAME IF LOGGED IN ==========
+    const user = JSON.parse(localStorage.getItem('hhc_user') || 'null');
+    if (user && user.name) {
+      document.getElementById('reviewer-name').value = user.name;
+    }
+
+    // ========== LOAD APPROVED REVIEWS FROM BACKEND ==========
+    async function loadPublicReviews() {
+      const container = document.getElementById('public-reviews');
+      if (!container) return;
+
+      try {
+        const reviews = await apiGetApprovedReviews();
+
+        if (!reviews.length) {
+          container.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align:center; color:#666; padding: 1rem;">
+              No reviews yet. Be the first to leave one!
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = reviews.map(r => `
+          <div class="review-card" style="background:white; padding:1.5rem; border-radius:var(--radius); box-shadow:var(--shadow);">
+            <div class="stars" style="color:var(--orange); margin-bottom:0.5rem;">
+              ${'★'.repeat(r.rating || 0)}${'☆'.repeat(5 - (r.rating || 0))}
+            </div>
+            <p>“${r.text}”</p>
+            <strong style="display:block; margin-top:0.75rem;">— ${r.name}</strong>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<div style="grid-column:1/-1; color:red; text-align:center;">Failed to load reviews</div>`;
+      }
+    }
+
+    loadPublicReviews();
+
+    // ========== SUBMIT REVIEW TO BACKEND ==========
+    document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const currentUser = JSON.parse(localStorage.getItem('hhc_user') || 'null');
+      if (!currentUser || !currentUser.token) {
+        alert('Please login first to leave a review.');
+        window.location.href = 'login.html';
+        return;
+      }
+
+      if (currentUser.role === 'admin') {
+        alert('Admin cannot leave reviews.');
+        return;
+      }
+
+      if (selectedRating === 0) {
+        alert('Please select a rating.');
+        return;
+      }
+
+      const name = document.getElementById('reviewer-name').value.trim();
+      const text = document.getElementById('review-text').value.trim();
+
+      if (!name || !text) {
+        alert('Please fill in your name and review.');
+        return;
+      }
+
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.classList.add('loading');
+
+      try {
+        await apiCreateReview({
+          name,
+          rating: selectedRating,
+          text
+        });
+
+        alert('Thank you for your review! It has been submitted and is waiting for approval.');
+
+        this.reset();
+        selectedRating = 0;
+        document.getElementById('rating-value').value = 0;
+        stars.forEach(s => s.textContent = '☆');
+
+        if (currentUser.name) {
+          document.getElementById('reviewer-name').value = currentUser.name;
+        }
+
+        const preview = document.querySelector('.upload-preview');
+        if (preview) {
+          preview.style.display = 'none';
+          preview.src = '';
+        }
+      } catch (err) {
+        alert(err.message || 'Failed to submit review');
+      } finally {
+        btn.disabled = false;
+        btn.classList.remove('loading');
+      }
+    });
+  </script>
+</body>
+</html>

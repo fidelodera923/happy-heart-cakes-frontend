@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account | Happy Heart Cakes</title>
+  <link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="images/logo.jpeg" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+       <a href="index.html" class="logo">
+  <img src="images/logo.jpeg" alt="Happy Heart Cakes" style="height: 42px; width: auto;">
+  Happy Heart Cakes
+</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="custom-order.html">Custom Orders</a></li>
+          <li><a href="user-dashboard.html" class="active">My Account</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="#" class="btn btn-outline btn-sm logout-btn">Logout</a>
+          <button class="mobile-toggle">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h3 style="color: white;">My Account</h3>
+        <p style="font-size: 0.9rem; opacity: 0.7;" id="user-name">Customer</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#orders">My Orders</a>
+        <a href="cart.html">My Cart</a>
+        <a href="checkout.html">Checkout</a>
+        <a href="custom-order.html">New Custom Order</a>
+        <a href="#" class="logout-btn">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="dashboard-content">
+      <h1 class="mb-2">Welcome back, <span id="welcome-name">Customer</span>!</h1>
+      <p style="color: var(--gray-600); margin-bottom: 2rem;">Here’s an overview of your account.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Orders</h3>
+          <div class="value" id="stat-total">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Pending</h3>
+          <div class="value" id="stat-pending">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>Completed</h3>
+          <div class="value" id="stat-completed">0</div>
+        </div>
+      </div>
+
+      <div style="background: white; padding: 1.75rem; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 1.5rem;">
+        <h3 class="mb-2">My Orders</h3>
+        <div id="user-orders"></div>
+        <div style="overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--gray-200); text-align: left;">
+                <th style="padding: 0.75rem;">Reference</th>
+                <th style="padding: 0.75rem;">Items</th>
+                <th style="padding: 0.75rem;">Date</th>
+                <th style="padding: 0.75rem;">Status</th>
+                <th style="padding: 0.75rem;">Total</th>
+              </tr>
+            </thead>
+            <tbody id="user-orders-table">
+              <!-- Filled by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+<script src="js/main.js"></script>
+
+  <script src="js/main.js"></script>
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('hhc_user') || 'null');
+
+    if (currentUser && currentUser.name) {
+      document.getElementById('user-name').textContent = currentUser.name;
+      document.getElementById('welcome-name').textContent = currentUser.name;
+    }
+
+    // Get all orders and filter for this user
+    const allOrders = JSON.parse(localStorage.getItem('hhc_orders') || '[]');
+    const myOrders = allOrders.filter(order => 
+      order.customer === (currentUser ? currentUser.name : '') || 
+      order.customer === 'Guest Customer'
+    );
+
+    // Stats
+    document.getElementById('stat-total').textContent = myOrders.length;
+    document.getElementById('stat-pending').textContent = myOrders.filter(o => 
+      o.status === 'Pending' || o.status === 'In Progress'
+    ).length;
+    document.getElementById('stat-completed').textContent = myOrders.filter(o => 
+      o.status === 'Completed' || o.status === 'Delivered'
+    ).length;
+
+    // Render orders table
+    const tbody = document.getElementById('user-orders-table');
+
+    if (myOrders.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 2rem; color: var(--gray-600);">
+            You have no orders yet. <a href="products.html">Start shopping</a>
+          </td>
+        </tr>
+      `;
+    } else {
+      tbody.innerHTML = myOrders.map(order => `
+        <tr style="border-bottom: 1px solid var(--gray-200);">
+          <td style="padding: 0.75rem;">${order.ref || '-'}</td>
+          <td style="padding: 0.75rem;">${order.items}</td>
+          <td style="padding: 0.75rem;">${order.date}</td>
+          <td style="padding: 0.75rem;">
+            <span class="badge ${
+              order.status === 'Pending' || order.status === 'In Progress' ? 'badge-orange' : 'badge-blue'
+            }">${order.status}</span>
+          </td>
+          <td style="padding: 0.75rem;">${order.amount}</td>
+        </tr>
+      `).join('');
+    }
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const user = JSON.parse(localStorage.getItem('hhc_user') || 'null');
+
+    if (!user || !user.token) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    if (user.role === 'admin') {
+      window.location.href = 'admin-dashboard.html';
+      return;
+    }
+
+    // Show user name if you have an element for it
+    const nameEl = document.getElementById('user-name');
+    if (nameEl) nameEl.textContent = user.name || 'Customer';
+
+    const ordersContainer = document.getElementById('user-orders');
+    // If your page uses a table body, use that id instead, e.g. orders-table
+
+    try {
+      const orders = await apiGetMyOrders();
+
+      if (!ordersContainer) {
+        console.log('Orders loaded:', orders);
+        return;
+      }
+
+      if (!orders.length) {
+        ordersContainer.innerHTML = `
+          <div class="empty-state">
+            <div class="emoji">📦</div>
+            <h3>No orders yet</h3>
+            <p>When you place an order, it will appear here.</p>
+            <a href="products.html" class="btn btn-primary">Browse Products</a>
+          </div>
+        `;
+        return;
+      }
+
+      ordersContainer.innerHTML = `
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:0.75rem; border-bottom:1px solid #eee;">Ref</th>
+                <th style="text-align:left; padding:0.75rem; border-bottom:1px solid #eee;">Items</th>
+                <th style="text-align:left; padding:0.75rem; border-bottom:1px solid #eee;">Delivery</th>
+                <th style="text-align:left; padding:0.75rem; border-bottom:1px solid #eee;">Payment</th>
+                <th style="text-align:left; padding:0.75rem; border-bottom:1px solid #eee;">Status</th>
+                <th style="text-align:left; padding:0.75rem; border-bottom:1px solid #eee;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${orders.map(order => `
+                <tr>
+                  <td style="padding:0.75rem; border-bottom:1px solid #eee;">${order.ref || '-'}</td>
+                  <td style="padding:0.75rem; border-bottom:1px solid #eee;">${order.items || '-'}</td>
+                  <td style="padding:0.75rem; border-bottom:1px solid #eee;">
+                    ${order.place || '-'}<br>
+                    <small>${order.deliveryDate || ''} ${order.deliveryTime || ''}</small>
+                  </td>
+                  <td style="padding:0.75rem; border-bottom:1px solid #eee;">${order.payment || '-'}</td>
+                  <td style="padding:0.75rem; border-bottom:1px solid #eee;">
+                    <span class="badge ${order.status === 'Delivered' ? 'badge-blue' : 'badge-orange'}">${order.status}</span>
+                  </td>
+                  <td style="padding:0.75rem; border-bottom:1px solid #eee;"><strong>${order.amount || '-'}</strong></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    } catch (err) {
+      if (ordersContainer) {
+        ordersContainer.innerHTML = `<p style="color:red;">Failed to load orders: ${err.message}</p>`;
+      } else {
+        alert('Failed to load orders: ' + err.message);
+      }
+    }
+  });
+</script>
+</body>
+</html>
