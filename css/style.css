@@ -35,6 +35,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -45,6 +47,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 img {
@@ -181,6 +185,7 @@ h4 { font-size: 1.25rem; }
   justify-content: space-between;
   padding: 0.9rem 0;
   gap: 1rem;
+  position: relative;
 }
 
 .logo {
@@ -844,121 +849,16 @@ textarea.form-control {
   transform: rotate(45deg);
 }
 
-/* ========== Responsive ========== */
-@media (max-width: 992px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .hero-text p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero-buttons {
-    justify-content: center;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  h1 { font-size: 2rem; }
-  .hero-text h1 { font-size: 2.2rem; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    flex-direction: column;
-    padding: 1rem;
-    box-shadow: var(--shadow);
-    gap: 0;
-  }
-  .nav-links.open {
-    display: flex;
-  }
-  .nav-links a {
-    padding: 0.85rem 1rem;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .mobile-toggle {
-    display: block;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  .payment-methods {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .section { padding: 2.5rem 0; }
-  .hero { padding: 3rem 0; }
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-}
 /* =====================================================
-   NEW UPDATES - Mobile + Loading States + Empty States
+   NEW UPDATES - Loading, Empty, Search, Notes
    ===================================================== */
 
-/* Mobile improvements for cake configurators */
-@media (max-width: 768px) {
-  .tier-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-  }
-
-  .tier-row label {
-    min-width: auto;
-    font-weight: 600;
-  }
-
-  .tier-row select {
-    width: 100%;
-  }
-
-  .product-card .form-group {
-    margin-bottom: 0.75rem;
-  }
-
-  .qty-selector {
-    justify-content: flex-start;
-  }
-
-  .notes-box {
-    font-size: 0.9rem;
-    padding: 0.9rem 1rem;
-  }
-
-  .search-box {
-    margin-bottom: 1.25rem;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Button Loading State */
 .btn.loading {
   position: relative;
   color: transparent !important;
   pointer-events: none;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .btn.loading::after {
@@ -977,12 +877,14 @@ textarea.form-control {
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-/* Better Empty States */
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .empty-state {
   text-align: center;
   padding: 3.5rem 1.5rem;
@@ -1005,7 +907,6 @@ textarea.form-control {
   margin-bottom: 1.5rem;
 }
 
-/* Search box polish */
 .search-box {
   max-width: 420px;
   margin: 0 auto 1.75rem;
@@ -1036,7 +937,6 @@ textarea.form-control {
   font-size: 1rem;
 }
 
-/* Notes box */
 .notes-box {
   background: #fff8f0;
   border-left: 4px solid var(--orange);
@@ -1046,12 +946,8 @@ textarea.form-control {
   font-size: 0.95rem;
   line-height: 1.6;
 }
-/* =====================================================
-   MEDIUM PRIORITY UPDATES
-   Toast + Mobile + Button states
-   ===================================================== */
 
-/* Toast Notification */
+/* Toast */
 .toast {
   position: fixed;
   bottom: 30px;
@@ -1077,46 +973,10 @@ textarea.form-control {
   opacity: 1;
 }
 
-.toast.success {
-  background: #25D366;
-}
+.toast.success { background: #25D366; }
+.toast.error { background: #e74c3c; }
 
-.toast.error {
-  background: #e74c3c;
-}
-
-/* Better mobile spacing for Checkout */
-@media (max-width: 768px) {
-  .section .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.1rem;
-  }
-
-  .form-control {
-    font-size: 16px; /* prevents zoom on iOS */
-  }
-
-  #confirmOrderBtn {
-    margin-bottom: 2rem;
-  }
-
-  .product-footer {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-}
-
-/* Disabled Add to Cart state */
-.btn:disabled,
-.btn.loading {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-/* Print styles for Order Confirmation */
+/* Print */
 @media print {
   .header,
   .footer,
@@ -1125,14 +985,13 @@ textarea.form-control {
   .mobile-toggle {
     display: none !important;
   }
-  body {
-    background: white;
-  }
+  body { background: white; }
   #order-details {
     box-shadow: none !important;
     border: 1px solid #ddd;
   }
 }
+
 /* Dark Mode */
 body.dark-mode {
   --gray-100: #1a1a1a;
@@ -1159,7 +1018,8 @@ body.dark-mode .btn-outline {
   color: #eee;
   border-color: #666;
 }
-/* Better keyboard focus */
+
+/* Keyboard focus */
 a:focus,
 button:focus,
 input:focus,
@@ -1168,15 +1028,14 @@ textarea:focus {
   outline: 3px solid var(--orange);
   outline-offset: 2px;
 }
-/* =====================================================
-   Hero - 3 Circular Images (Text left, images right)
-   ===================================================== */
 
+/* Hero circles */
 .hero-circles {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .hero-circle {
@@ -1188,7 +1047,6 @@ textarea:focus {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Middle image larger */
 .hero-circle-main {
   width: 145px;
   height: 145px;
@@ -1196,17 +1054,300 @@ textarea:focus {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .hero-circles {
-    margin-top: 1.5rem;
+/* ========== RESPONSIVE ========== */
+@media (max-width: 992px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
+
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .section {
+    padding: 2.25rem 0;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+  }
+
+  .hero-circles {
+    margin-top: 1.25rem;
+    gap: 10px;
+  }
+
   .hero-circle {
     width: 85px;
     height: 85px;
   }
+
   .hero-circle-main {
     width: 110px;
     height: 110px;
+  }
+
+  /* Navbar + mobile menu (.open matches main.js) */
+  .navbar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .logo img {
+    height: 32px !important;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 1rem 1rem;
+    box-shadow: var(--shadow);
+    gap: 0;
+    z-index: 1001;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.85rem 0.5rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .nav-links a.active::after {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .nav-actions {
+    gap: 0.4rem;
+  }
+
+  .nav-actions .btn {
+    padding: 0.45rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  /* Grids */
+  .product-grid,
+  .gallery-grid,
+  .stats-grid,
+  .payment-methods,
+  .form-row,
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Force single column for inline style grids */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .product-card,
+  .review-card,
+  .admin-section {
+    padding: 1rem;
+  }
+
+  .product-footer {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filters {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  /* Forms */
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-control {
+    font-size: 16px; /* prevents iOS zoom */
+  }
+
+  textarea.form-control {
+    min-height: 110px;
+  }
+
+  .auth-card {
+    padding: 1.5rem;
+  }
+
+  /* Tables scroll instead of crushing */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th, td {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  /* Dashboard */
+  .dashboard {
+    display: block;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+  }
+
+  /* Checkout payment labels */
+  #label-paynow,
+  #label-pod,
+  #label-mpesa,
+  #label-card {
+    min-width: 100% !important;
+  }
+
+  #confirmOrderBtn {
+    margin-bottom: 2rem;
+  }
+
+  /* Product configurators */
+  .tier-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .tier-row label {
+    min-width: auto;
+    font-weight: 600;
+  }
+
+  .tier-row select {
+    width: 100%;
+  }
+
+  .qty-selector {
+    justify-content: flex-start;
+  }
+
+  .notes-box {
+    font-size: 0.9rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .btn {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 0;
+  }
+
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.65rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-sm {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.78rem;
+  }
+
+  .hero-circle {
+    width: 72px;
+    height: 72px;
+  }
+
+  .hero-circle-main {
+    width: 92px;
+    height: 92px;
   }
 }
